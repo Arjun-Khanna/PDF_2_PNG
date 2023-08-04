@@ -3,11 +3,11 @@ from PIL import Image
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
-def convert_png_to_pdf(input_folder, output_pdf=None):
-    image_files = [f for f in os.listdir(input_folder) if f.lower().endswith('.png')]
+def convert_images_to_pdf(input_folder, output_pdf=None):
+    image_files = [f for f in os.listdir(input_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
 
     if not image_files:
-        print("No PNG files found in the input folder.")
+        print("No PNG or JPG files found in the input folder.")
         return
 
     temp_image_files = []
@@ -22,7 +22,6 @@ def convert_png_to_pdf(input_folder, output_pdf=None):
         img_width, img_height = image.size
         aspect_ratio = img_width / img_height
 
-        
         pdf_width, pdf_height = 500, 500 / aspect_ratio
 
         c.drawImage(image_path, 50, 750 - pdf_height, width=pdf_width, height=pdf_height)
@@ -41,9 +40,9 @@ def convert_png_to_pdf(input_folder, output_pdf=None):
 
 if __name__ == "__main__":
     # Set the input folder path
-    input_folder = r"C:\Users\Arjun Khanna\Desktop\Berserk\Berserk v03 (2004) (Digital) (Cyborgzx-repack)"  # Replace with the path to your folder containing PNG files
+    input_folder = r"C:\Users\Arjun Khanna\Desktop\Berserk\Berserk v18 (2007) (Digital) (Cyborgzx-repack)"  # Replace with the path to your folder containing PNG and JPG files
 
     # Set the output PDF path
-    output_pdf = r"C:\Users\Arjun Khanna\Desktop\Berserk\Berserk v03 (2004) (Digital) (Cyborgzx-repack)\output.pdf"  # Replace with the desired output PDF filename or set to None
+    output_pdf = r"C:\Users\Arjun Khanna\Desktop\Berserk\Berserk v18 (2007) (Digital) (Cyborgzx-repack)\output.pdf"  # Replace with the desired output PDF filename or set to None
 
-    convert_png_to_pdf(input_folder, output_pdf)
+    convert_images_to_pdf(input_folder, output_pdf)
